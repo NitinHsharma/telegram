@@ -1,17 +1,29 @@
 const express = require('express')
-
+const bodyParser = require('body-parser')
 
 
 const app = express()
 
 console.log(app);
 
-
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-	console.log('working');
-	res.send('Hello World!')
+	
+	res.send('pong')
 })
+
+app.get('/start', (req, res) => {
+
+	res.send('Hello')
+})
+
+app.post('/hook',(req,res)=>{
+	console.log('Come here',req.body);
+	res.send(req.body);
+})
+
+
 
 app.use((req, res) => {
 	console.log(req);
@@ -24,3 +36,5 @@ var server = app.listen(process.env.PORT || 5000, function () {
 
    console.log("Example app listening at http://%s:%s", host, port)
 })
+
+
