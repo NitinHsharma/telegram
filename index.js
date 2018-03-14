@@ -23,7 +23,7 @@ app.post('/hook',(req,res)=>{
 	res.send({
 					method: 'sendMessage',
 					chat_id: 480882720,
-					text: 'You said ' + req.body.chat.text
+					text: 'You said ' + req.body.message.chat.text
 				});
 })
 
