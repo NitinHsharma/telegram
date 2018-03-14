@@ -20,7 +20,11 @@ app.get('/start', (req, res) => {
 
 app.post('/hook',(req,res)=>{
 	console.log('Come here',req.body);
-	res.send(req.body);
+	res.send({
+					method: 'sendMessage',
+					chat_id: 480882720,
+					text: 'You said ' + req.body.chat.text
+				});
 })
 
 
@@ -36,5 +40,4 @@ var server = app.listen(process.env.PORT || 5000, function () {
 
    console.log("Example app listening at http://%s:%s", host, port)
 })
-
 
