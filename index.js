@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const http = require('http')
+const request = require('request')
 
 
 const app = express()
@@ -31,7 +31,7 @@ app.post('/hook', (req, res) => {
 		if (text.indexOf('wiki') >= 0) {
 			let userText = text.split(' ');
 
-			http.get(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=${userText[1]}&format=json`, (err, data) => {
+			request(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=${userText[1]}&format=json`, (err,response,body) => {
 				if (err) {
 					res.send({
 						method: 'sendMessage',
@@ -42,7 +42,7 @@ app.post('/hook', (req, res) => {
 					res.send({
 						method: 'sendMessage',
 						chat_id: chat_id,
-						text: `${data}`
+						text: `${body}`
 					});
 				}
 			});
