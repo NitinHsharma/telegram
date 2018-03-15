@@ -28,7 +28,7 @@ app.post('/hook', (req, res) => {
 	if (message.text) {
 		let text = message.text;
 
-		if (text.indexOf(wiki) >= 0) {
+		if (text.indexOf('wiki') >= 0) {
 			let userText = text.split(' ');
 
 			http.get(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=${userText[1]}&format=json`, (err, data)=> {
