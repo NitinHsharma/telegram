@@ -40,6 +40,7 @@ app.post('/hook', (req, res) => {
 						text: `You said ${text}`
 					});
 				} else {
+					console.log(response);
 					res.send({
 						method: 'sendMessage',
 						chat_id: chat_id,
