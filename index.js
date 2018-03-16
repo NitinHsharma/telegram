@@ -31,7 +31,7 @@ app.post('/hook', (req, res) => {
 		if (text.indexOf('wiki') >= 0) {
 			let userText = text.split(' ');
 
-			https.get(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=${userText[1]}&format=json`, (err,response) => {
+			https.get(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=${userText[1]}&format=json`, (response,err) => {
 				if (err) {
 					console.log(err);
 					res.send({
@@ -43,7 +43,7 @@ app.post('/hook', (req, res) => {
 					res.send({
 						method: 'sendMessage',
 						chat_id: chat_id,
-						text: `${response}`
+						text: `${response.body}`
 					});
 				}
 			});
